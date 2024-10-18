@@ -1,19 +1,17 @@
 group 'com.example.imagegallerysaver'
 version '1.0-SNAPSHOT'
 
-plugins {
-    id 'com.android.application' version '8.0.0' apply false
-    id 'com.android.library' version '8.0.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
-}
-
-buildscript 
+buildscript {
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
     }
 
-    
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
 rootProject.allprojects {
@@ -23,6 +21,9 @@ rootProject.allprojects {
     }
 }
 
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
 android {
     compileSdkVersion 30
     namespace 'com.example.imagegallerysaver'
@@ -31,7 +32,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
